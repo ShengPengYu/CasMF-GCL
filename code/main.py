@@ -12,7 +12,7 @@ import torch as t
 from torch import optim
 from loss import Myloss
 
-import MKGCN
+import CasMFGCL
 
 
 
@@ -59,7 +59,7 @@ def PredictScore(train_drug_mic_matrix, drug_matrix, mic_matrix, seed, sizes):
     X = t.FloatTensor(X)
     train_data['feature'] = X
 
-    model = MKGCN.Model(sizes, drug_matrix, mic_matrix)
+    model = CasMFGCL.Model(sizes, drug_matrix, mic_matrix)
     print(model)
     for parameters in model.parameters():
         print(parameters, ':', parameters.size())
