@@ -24,13 +24,13 @@ def train(model, train_data, optimizer, sizes):
     def train_epoch():
         model.zero_grad()
         score, con_loss = model(train_data)
-        loss = regression_crit(train_data['Y_train'], score, model.drug_l, model.mic_l, model.alpha1,
+        loss = regression_crit(train_data['Y_train'], score, model.dis_l, model.mic_l, model.alpha1,
                                model.alpha2, sizes, con_loss)
         model.alpha1 = t.mm(
-            t.mm((t.mm(model.drug_k, model.drug_k) + model.lambda1 * model.drug_l).inverse(), model.drug_k),
+            t.mm((t.mm(model.dis_k, model.dis_k) + model.lambda1 * model.dis_l).inverse(), model.dis_k),
             2 * train_data['Y_train'] - t.mm(model.alpha2.T, model.mic_k.T)).detach()
         model.alpha2 = t.mm(t.mm((t.mm(model.mic_k, model.mic_k) + model.lambda2 * model.mic_l).inverse(), model.mic_k),
-                            2 * train_data['Y_train'].T - t.mm(model.alpha1.T, model.drug_k.T)).detach()
+                            2 * train_data['Y_train'].T - t.mm(model.alpha1.T, model.dis_k.T)).detach()
         loss = loss.requires_grad_()
         loss.backward()
         optimizer.step()
@@ -43,11 +43,11 @@ def train(model, train_data, optimizer, sizes):
     pass
 
 
-def PredictScore(train_drug_mic_matrix, drug_matrix, mic_matrix, seed, sizes):
+def PredictScore(train_dis_mic_matrix, dis_matrix, mic_matrix, seed, sizes):
     np.random.seed(seed)
     train_data = {}
-    train_data['Y_train'] = t.DoubleTensor(train_drug_mic_matrix)
-    Heter_adj = constructHNet(train_drug_mic_matrix, drug_matrix, mic_matrix)
+    train_data['Y_train'] = t.DoubleTensor(train_dis_mic_matrix)
+    Heter_adj = constructHNet(train_dis_mic_matrix, dis_matrix, mic_matrix)
 
 
     Heter_adj = t.FloatTensor(Heter_adj)
@@ -55,11 +55,11 @@ def PredictScore(train_drug_mic_matrix, drug_matrix, mic_matrix, seed, sizes):
     print(Heter_adj_edge_index)
     train_data['Adj'] = {'data': Heter_adj, 'edge_index': Heter_adj_edge_index}
 
-    X = constructNet(train_drug_mic_matrix)
+    X = constructNet(train_dis_mic_matrix)
     X = t.FloatTensor(X)
     train_data['feature'] = X
 
-    model = CasMFGCL.Model(sizes, drug_matrix, mic_matrix)
+    model = CasMFGCL.Model(sizes, dis_matrix, mic_matrix)
     print(model)
     for parameters in model.parameters():
         print(parameters, ':', parameters.size())
@@ -84,35 +84,35 @@ def random_index(index_matrix, sizes):
     return temp
 
 
-def crossval_index(drug_mic_matrix, sizes):
+def crossval_index(dis_mic_matrix, sizes):
     random.seed(sizes.seed)
-    pos_index_matrix = np.mat(np.where(drug_mic_matrix == 1))
-    neg_index_matrix = np.mat(np.where(drug_mic_matrix == 0))
+    pos_index_matrix = np.mat(np.where(dis_mic_matrix == 1))
+    neg_index_matrix = np.mat(np.where(dis_mic_matrix == 0))
     pos_index = random_index(neg_index_matrix, sizes)
     neg_index = random_index(pos_index_matrix, sizes)
     index = [pos_index[i] + neg_index[i] for i in range(sizes.k_fold)]
     return index
 
 
-def cross_validation_experiment(drug_mic_matrix, drug_matrix, mic_matrix, sizes):
-    index = crossval_index(drug_mic_matrix, sizes)
+def cross_validation_experiment(dis_mic_matrix, dis_matrix, mic_matrix, sizes):
+    index = crossval_index(dis_mic_matrix, sizes)
     metric = np.zeros((1, 7))
-    pre_matrix = np.zeros(drug_mic_matrix.shape)
-    print("seed=%d, evaluating drug-microbe...." % (sizes.seed))
-    Print("seed=%d, evaluating drug-microbe...." % (sizes.seed), output, timestamp=True)
+    pre_matrix = np.zeros(dis_mic_matrix.shape)
+    print("seed=%d, evaluating dis-microbe...." % (sizes.seed))
+    Print("seed=%d, evaluating dis-microbe...." % (sizes.seed), output, timestamp=True)
     print(sizes.k_fold)
     for k in range(sizes.k_fold):
         print("------this is %dth cross validation------" % (k + 1))
         Print("------this is %dth cross validation------" % (k + 1), output, timestamp=True)
-        train_matrix = np.matrix(drug_mic_matrix, copy=True)
+        train_matrix = np.matrix(dis_mic_matrix, copy=True)
         train_matrix[tuple(np.array(index[k]).T)] = 0
-        drug_len = drug_mic_matrix.shape[0]
-        dis_len = drug_mic_matrix.shape[1]
-        drug_mic_res, _ = PredictScore(
-            train_matrix, drug_matrix, mic_matrix, sizes.seed, sizes)
-        predict_y_proba = drug_mic_res.reshape(drug_len, dis_len).detach().numpy()
+        dis_len = dis_mic_matrix.shape[0]
+        dis_len = dis_mic_matrix.shape[1]
+        dis_mic_res, _ = PredictScore(
+            train_matrix, dis_matrix, mic_matrix, sizes.seed, sizes)
+        predict_y_proba = dis_mic_res.reshape(dis_len, dis_len).detach().numpy()
         pre_matrix[tuple(np.array(index[k]).T)] = predict_y_proba[tuple(np.array(index[k]).T)]
-        metric_tmp = get_metrics(drug_mic_matrix[tuple(np.array(index[k]).T)],
+        metric_tmp = get_metrics(dis_mic_matrix[tuple(np.array(index[k]).T)],
                                  predict_y_proba[tuple(np.array(index[k]).T)])
 
         print(metric_tmp)
@@ -126,22 +126,23 @@ def cross_validation_experiment(drug_mic_matrix, drug_matrix, mic_matrix, sizes)
 
 if __name__ == "__main__":
 
+    dataname = "HMDAD"
     data_path = '../data/'
-    data_set = 'Disbiome/'
-    output, save_prefix = set_output("./results/log", "HMDAD")
+    data_set = dataname + '/'
+    output, save_prefix = set_output("./results/log", dataname)
 
-    drug_sim = np.loadtxt(data_path + data_set + 'diseasesimilarity.txt', delimiter='\t')
+    dis_sim = np.loadtxt(data_path + data_set + 'diseasesimilarity.txt', delimiter='\t')
     mic_sim = np.loadtxt(data_path + data_set + 'microbesimilarity.txt', delimiter='\t')
     adj_triple = np.loadtxt(data_path + data_set + 'adj.txt')
-    drug_mic_matrix = sp.csc_matrix((adj_triple[:, 2], (adj_triple[:, 0] - 1, adj_triple[:, 1] - 1)),
-                                    shape=(len(drug_sim), len(mic_sim))).toarray()
+    dis_mic_matrix = sp.csc_matrix((adj_triple[:, 2], (adj_triple[:, 0] - 1, adj_triple[:, 1] - 1)),
+                                    shape=(len(dis_sim), len(mic_sim))).toarray()
 
     average_result = np.zeros((1, 7), float)
     circle_time = 1
-    sizes = Sizes(drug_sim.shape[0], mic_sim.shape[0])
+    sizes = Sizes(dis_sim.shape[0], mic_sim.shape[0])
     results = []
 
     result, pre_matrix = cross_validation_experiment(
-        drug_mic_matrix, drug_sim, mic_sim, sizes)
-    np.savetxt('pre_matrix1.txt', pre_matrix)
+        dis_mic_matrix, dis_sim, mic_sim, sizes)
+    np.savetxt('pre_matrix_'+dataname+'.txt', pre_matrix)
     print(list(sizes.__dict__.values()) + result.tolist()[0][:2])
