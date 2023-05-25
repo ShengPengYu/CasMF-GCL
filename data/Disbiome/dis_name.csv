@@ -1,0 +1,218 @@
+1,Acne
+2,Acquired Immunodeficiency Syndrome
+3,Acute skin abscess
+4,Aggressive periodontitis
+5,Alcoholic hepatitis
+6,Alcoholism
+7,Allergic asthma
+8,Allergy
+9,Alzheimer's Disease
+10,Amyotrophic lateral sclerosis
+11,Ankylosing spondylitis
+12,Anorexia Nervosa
+13,Aphthous stomatitis
+14,Aphthous ulcer
+15,Appendicitis
+16,Arsenic exposure
+17,Ascites
+18,Asthma
+19,Atherosclerosis
+20,Atopic dermatitis
+21,Atopic eczema
+22,Atopic wheeze
+23,Atopy
+24,Atrophic gastritis
+25,Attention Deficit Hyperactivity Disorder
+26,Autism
+27,Autism spectrum disorders
+28,Autoimmune hepatitis
+29,Autoimmune polyendocrine syndrome type 1
+30,Azoospermia
+31,Bacterial vaginosis
+32,Barrett's oesophagus
+33,Behcet's Disease
+34,Bipolar disorder
+35,Blepharitis
+36,Botulism
+37,Breast cancer
+38,Bronchiectasis
+39,Bronchiolitis
+40,Budd-Chiari syndrome
+41,Bullous pemphigoid
+42,Cardiovascular disease
+43,Caries
+44,"Celiac Disease, Coaliac disease"
+45,Cervical cancer
+46,Cervicitis
+47,Chagas' disease
+48,Chlamydia
+49,Chronic alcoholic pancreatitis
+50,Chronic fatigue syndrome
+51,Chronic kidney disease
+52,Chronic lung disease
+53,Chronic Obstructive Pulmonary Disease
+54,Chronic prostatitis \/ Chronic pelvic pain syndrome
+55,Chronic Rhinosinusitis
+56,Chronic Rhinosinusitis with asthma
+57,Chronic Rhinosinusitis with cystic fibrosis
+58,Cirrhosis
+59,Cirrhosis with pneumonia
+60,Clonorchis sinensis infection
+61,Clostridium difficile associated disease
+62,Colon adenomas
+63,Colorectal cancer
+64,Conjunctival scarring
+65,Constipation
+66,COPD Exacerbation
+67,Coronary artery disease
+68,Coronary Heart Disease
+69,Crohn's Disease
+70,Cutaneous burn
+71,Cystic Fibrosis
+72,Cytolytic vaginosis
+73,Dandruff
+74,Denture Stomatitis
+75,Disease-free 
+76,Diverticular disease
+77,Endometrial cancer
+78,Enthesitis-related arthritis 
+79,Eosinophilic esophagitis
+80,Esophageal cancer
+81,Exacerbations of idiopathic pulmonary fibrosis
+82,Familial adenomatous polyposis
+83,Functional dyspepsia
+84,Gastric carcinoma
+85,Gastroenteritis
+86,Gastro-oesophageal reflux disease
+87,Gestational diabetes
+88,Gingivitis
+89,Granulomatosis with polyangiitis
+90,Granulomatous mastitis
+91,Graves' disease
+92,Halitosis
+93,Hashimoto's thyroiditis
+94,Head\/Neck cancer
+95,Heart failure
+96,Helicobacter pylori infection
+97,Henoch-Sch?nlein Purpura
+98,Hepatic encephalopathy
+99,Hepatitis B
+100,Hepatitis C
+101,Hepatocellular cancer
+102,Hirschsprung-associated enterocolitis
+103,Hirschsprung's disease
+104,HIV infection
+105,HIV-infected pneumonia
+106,Human papilloma virus infection
+107,Hutchinson-Gilford progeria syndrome
+108,Hyperlipidemia
+109,Hypertension
+110,Hyperthyroidism
+111,Idiopathic infertility
+112,Idiopathic nephrotic syndrome
+113,Idiopathic Pulmonary Fibrosis
+114,Idiopathic REM Sleep Behavior Disorder
+115,Inactive Crohn's Disease
+116,Infantile eczema
+117,Infective colitis
+118,Inflammatory Bowel Disease
+119,Interstitial cystitis
+120,Irritable Bowel Syndrome
+121,Juvenile idiopathic arthritis
+122,Kawasaki disease
+123,Kidney stone
+124,Laryngeal carcinoma
+125,Liver fibrosis
+126,Liver transplant
+127,Lung cancer
+128,Macular degeneration
+129,Major depressive disorder
+130,Maturity-onset diabetes of the young 2
+131,Megaesophagus
+132,Microscopic colitis
+133,Multiple Sclerosis
+134,Multiple system atrophy
+135,Myasthenia gravis
+136,Necrotizing enterocolitis
+137,Neuromyelitis optica
+138,Neuropathic bladder
+139,Non alcoholic steatohepatitis
+140,Non-alcoholic fatty liver disease
+141,Nongonococcal urethritis
+142,Obesity
+143,Oligoasthenoteratozoospermia
+144,Opisthorchis felineus infection
+145,Oral cancer
+146,Oral leukoplakia
+147,Oral lichen planus
+148,Oral potentially malignant disorder
+149,Osmotic diarrhea
+150,Osteoarthritis
+151,Otitis Media
+152,Overactive bladder
+153,Pancreatic cancer
+154,Pancreatitis
+155,Parkinson's Disease
+156,Pelvic inflammatory disease
+157,Periodontal disease
+158,periodontitis
+159,Pervasive developmental disorder NOS
+160,Pneumonia
+161,Polycystic Ovary Syndrome
+162,Postmenopausal
+163,Pouchitis
+164,Prediabetes
+165,Preeclamsia
+166,Pregnancy
+167,Preterm birth
+168,Primary biliary cholangitis
+169,Primary biliary cirrhosis
+170,Primary Open-Angle Glaucoma
+171,Primary sclerosing cholangitis
+172,Primary sclerosing cholangitis-IBD
+173,Prostate cancer
+174,Protracted bacterial bronchitis
+175,Psoriasis
+176,Psoriatic Arthritis
+177,Pulmonary tubercolosis
+178,Reactive arthritis
+179,Rectal Carcinoma
+180,Recurrent tonsillitis
+181,Reflux esophagitis
+182,Refractory celiac disease
+183,Rett Syndrome
+184,Rheumatoid Arthritis
+185,Rhinovirus infection
+186,Schizophrenia
+187,Seminal hyperviscosity
+188,Sensitive scalp
+189,Severe fever with thrombocytopenia syndrome
+190,severe skin and soft tissue infection
+191,Shiga Toxin-producing E. coli infection
+192,Short Bowel Syndrome
+193,Sickle cell disease
+194,Sj?gren Syndrom
+195,Small intestine neoplasm
+196,Smoking
+197,Spinal cord injury
+198,Spondyloarthritis
+199,Stomach cancer
+200,Systemic lupus erythematosus
+201,Systemic sclerosis
+202,T2D with hyperlipidemia
+203,T2D with hypertension
+204,T2D with hypertension and hyperlipidemia
+205,Trachoma
+206,Transient Ischemic Attack
+207,Trichomonas vaginalis infection
+208,Tuberculosis
+209,Type 1 Diabetes
+210,Type 2 Diabetes
+211,Ulcerative Colitis
+212,Urgency urinary incontinence
+213,Uveitits
+214,Viral Diarrhea
+215,Viral respiratory tract infection
+216,Vitiligo
+217,Vulvar vestibulitis syndrome
+218,Wilson's Disease
