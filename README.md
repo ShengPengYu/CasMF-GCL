@@ -7,7 +7,7 @@ Therefore, this paper proposes CasMF-GCL, a novel Graph Contrastive Learning mod
 
 ![img.png](flowchat.png)
 
-# Dataset
+# Datasets
 1)HMDAD: (http://www.cuilab.cn/hmdad). The Human Microbe-Disease Association Database (HMDAD) is a resource which collected and curated the human microbe-disease association data from microbiota studies. Currently, users can search and browse the database. In addition, a Download page for downloading the whole dataset in the database was also provided. Currently, HMDAD integrated 483 disease-microbe entries which include 39 diseases and 292 microbes;
 
 2)Disbiome: (https://disbiome.ugent.be/home), Disbiome is a database covering microbe composition changes in different kinds of diseases, managed by Ghent University. Disease names, detection methods or organism names can be used as search queries giving you all information related to the experiment (related disease/bacteria, abundancy subject/control, control type, detection method and related literature;
